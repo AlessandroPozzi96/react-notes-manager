@@ -12,8 +12,24 @@ export const noteSlice = createSlice({
     addNote: (currentSlice, action) => {
       currentSlice.noteList.push(action.payload);
     },
+
+    updateNote: (currentSlice, action) => {
+      const indexToUpdate = currentSlice.noteList.findIndex(
+        (note) => note.id === action.payload.id
+      );
+
+      currentSlice.noteList[indexToUpdate] = action.payload;
+    },
+    deleteNote: (currentSlice, action) => {
+      const indexToDelete = currentSlice.noteList.findIndex(
+        (note) => note.id === action.payload.id
+      );
+
+      currentSlice.noteList[indexToDelete] = undefined;
+    },
   },
 });
 
 export const noteReducer = noteSlice.reducer;
-export const { setNoteList, addNote } = noteSlice.actions;
+export const { setNoteList, addNote, updateNote, deleteNote } =
+  noteSlice.actions;

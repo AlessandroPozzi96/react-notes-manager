@@ -7,12 +7,6 @@
       "id": 2
     },
     {
-      "title": "React - States",
-      "content": "A state is a data managed by a component. Any time a component state changes the component re-render",
-      "created_at": "23/08/2022",
-      "id": 5
-    },
-    {
       "title": "React - Hooks",
       "content": "Hooks are function that let you use states and other React features. \n\nuseEffect() and useState() are two famous React hooks. ",
       "created_at": "23/08/2022",
@@ -77,12 +71,6 @@
       "content": "testt",
       "created_at": "26/12/2023",
       "id": 17
-    },
-    {
-      "title": "Test",
-      "content": "TEST CONTENT",
-      "created_at": "26/12/2023",
-      "id": 18
     }
   ]
 }

@@ -14,11 +14,21 @@ const VALIDATORS = {
   },
 };
 
-export function NoteForm({ title, onClickEdit, onClickTrash, onSubmit }) {
-  const [formValues, setFormValues] = useState({ title: "", content: "" });
+export function NoteForm({
+  isEditable = true,
+  title,
+  onClickEdit,
+  onClickTrash,
+  onSubmit,
+  note,
+}) {
+  const [formValues, setFormValues] = useState({
+    title: note?.title || "",
+    content: note?.content || "",
+  });
   const [formErrors, setFormErrors] = useState({
-    title: "",
-    content: "",
+    title: note?.title ? undefined : "",
+    content: note?.content ? undefined : "",
   });
 
   function hasErrors() {
@@ -59,6 +69,7 @@ export function NoteForm({ title, onClickEdit, onClickTrash, onSubmit }) {
         name="title"
         className="form-control"
         onChange={updateFormValues}
+        value={formValues.title}
       />
       <FieldError msg={formErrors.title} />
     </div>
@@ -73,6 +84,7 @@ export function NoteForm({ title, onClickEdit, onClickTrash, onSubmit }) {
         className="form-control"
         row="5"
         onChange={updateFormValues}
+        value={formValues.content}
       />
       <FieldError msg={formErrors.content} />
     </div>
@@ -99,8 +111,12 @@ export function NoteForm({ title, onClickEdit, onClickTrash, onSubmit }) {
         </div>
         {actionIcons}
       </div>
-      <div className={`mb-3 ${s.title_input_container}`}>{titleInput}</div>
-      <div className="mb-3">{contentInput}</div>
+      <div className={`mb-3 ${s.title_input_container}`}>
+        {isEditable && titleInput}
+      </div>
+      <div className="mb-3">
+        {isEditable ? contentInput : <pre>{note.content}</pre>}
+      </div>
       {onSubmit && submitButton}
     </form>
   );
