@@ -21,11 +21,11 @@ export const noteSlice = createSlice({
       currentSlice.noteList[indexToUpdate] = action.payload;
     },
     deleteNote: (currentSlice, action) => {
-      const indexToDelete = currentSlice.noteList.findIndex(
-        (note) => note.id === action.payload.id
+      const filetredList = currentSlice.noteList.filter(
+        (note) => note.id !== action.payload.id
       );
 
-      currentSlice.noteList[indexToDelete] = undefined;
+      currentSlice.noteList = filetredList;
     },
   },
 });

@@ -20,10 +20,12 @@ export function Note(props) {
     setIsEditable(false);
   }
 
-  async function remove() {
-    const deletedNote = await NoteAPI.deleteById(noteId.toString());
-    dispatch(deleteNote(deletedNote));
-    navigate("/");
+  function deleteNote_(note) {
+    if (window.confirm("Vouslez-vous vraiment supprimer la note ?")) {
+      NoteAPI.deleteById(note.id);
+      dispatch(deleteNote(note));
+      navigate("/");
+    }
   }
 
   return (
@@ -35,7 +37,7 @@ export function Note(props) {
           onClickEdit={() => {
             setIsEditable(!isEditable);
           }}
-          onClickTrash={remove}
+          onClickTrash={() => deleteNote_(note)}
           note={note}
           onSubmit={isEditable && submit}
         />
